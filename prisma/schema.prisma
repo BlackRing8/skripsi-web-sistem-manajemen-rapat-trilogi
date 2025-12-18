@@ -26,6 +26,8 @@ model Unit {
 
   // Relasi ke Rapat (many-to-many)
   rapat   Rapat[]   @relation("RapatUnit")
+
+  @@map("unit")
 }
 
 // =====================================
@@ -40,6 +42,8 @@ model Jabatan {
   userUnitJabatan UserUnitJabatan[]
 
   @@unique([nama, unitId], name: "nama_unitId")
+
+    @@map("jabatan")
 }
 
 
@@ -73,6 +77,8 @@ model User {
   rapatPeserta RapatPeserta[]
 
   profileCompleted Boolean @default(false)
+
+    @@map("user")
 }
 
 // =====================================
@@ -90,6 +96,8 @@ model UserUnitJabatan {
   jabatan Jabatan @relation(fields: [jabatanId], references: [id])
 
   @@unique([userId, unitId, jabatanId])
+
+    @@map("userunitjabatan")
 }
 
 // =====================================
@@ -120,6 +128,8 @@ model Rapat {
 
   // Satu rapat punya satu notulen
   notulen   Notulen?
+
+    @@map("rapat")
 }
 
 // =====================================
@@ -134,6 +144,8 @@ model RapatPeserta {
 
   user  User  @relation(fields: [userId], references: [id])
   rapat Rapat @relation(fields: [rapatId], references: [id], onDelete: Cascade)
+
+    @@map("rapatpeserta")
 }
 
 // =====================================
@@ -148,4 +160,6 @@ model Notulen {
   dibuatPada DateTime @default(now())
 
   rapat     Rapat     @relation(fields: [rapatId], references: [id], onDelete: Cascade)
+
+    @@map("notulen")
 }
