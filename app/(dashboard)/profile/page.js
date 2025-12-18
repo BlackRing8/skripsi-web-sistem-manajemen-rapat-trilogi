@@ -174,9 +174,9 @@ export default function ProfilePage() {
             </button>
           </div>
 
-          <h1 className="font-semibold">Nama Lengkap :</h1>
+          <h1 className="font-semibold">Email Tertaut :</h1>
           <div className="py-2.5 px-2 bg-gray-100 md:w-2/3 border-blue-500 border rounded-lg">
-            <p className=" text-xl">{dataProfile.name}</p>
+            <p className=" text-xl">{dataProfile.email}</p>
           </div>
           <h1 className="font-semibold">NIK :</h1>
           <div className="py-2.5 px-2 bg-gray-100 md:w-2/3 border-blue-500 border rounded-lg">
@@ -199,7 +199,7 @@ export default function ProfilePage() {
                     <td className="border border-black py-2">{uj.unit.nama}</td>
                     <td>{uj.jabatan.nama}</td>
                     <td className="border border-black py-2">
-                      <button onClick={() => hapusUnitJabatan(uj.id)} className="bg-red-500 text-white px-3.5 py-2 rounded-lg hover:bg-red-400 hover:cursor-pointer">
+                      <button onClick={() => hapusUnitJabatan(uj.id)} className="bg-red-500 text-xs md:text-lg text-white px-2 py-1 md:px-3.5 md:py-2 rounded-lg hover:bg-red-400 hover:cursor-pointer">
                         Hapus Jabatan
                       </button>
                     </td>
@@ -251,7 +251,12 @@ export default function ProfilePage() {
       {modalJabatan && (
         <div className="fixed inset-0  bg-opacity-40 flex  items-start justify-center z-50 mt-20">
           <div className="max-w-xl w-full mx-auto p-6 bg-white shadow rounded-lg border-black border">
-            <h1 className="text-xl font-bold mb-5">Tambah jabatan Anda</h1>
+            <div className="flex justify-between mb-2">
+              <h1 className="text-xl font-bold mb-5">Tambah jabatan Anda</h1>
+              <button onClick={() => setModalJabatan(false)} className="px-5 bg-gray-300 rounded-full">
+                X
+              </button>
+            </div>
 
             {/* ======================== */}
             {/* LIST ROW UNIT + JABATAN */}

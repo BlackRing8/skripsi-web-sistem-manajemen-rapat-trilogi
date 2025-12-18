@@ -52,15 +52,15 @@ export default function ManajemenPage() {
                 <thead>
                   <tr className="bg-blue-400">
                     <th className="border p-2">Nama</th>
-                    <th className="border p-2">Total Undangan</th>
-                    <th className="border p-2">Total Hadir</th>
+                    <th className="border p-2 text-xs md:text-lg">Total Undangan</th>
+                    <th className="border p-2 text-xs md:text-lg">Total Hadir</th>
                     <th className="border p-2">Persentase</th>
                   </tr>
                 </thead>
                 <tbody>
                   {users.map((u) => (
                     <tr key={`${u.userId}-${u.unitId}`} className="bg-white">
-                      <td className="border p-2 text-center">{u.name}</td>
+                      <td className="border p-2 text-center text-xs md:text-lg">{u.name}</td>
                       <td className="border p-2 text-center">{u.totalUndangan}</td>
                       <td className="border p-2 text-center">{u.totalHadir}</td>
                       <td className="border p-2 text-center">{u.presentase}%</td>

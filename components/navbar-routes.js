@@ -36,8 +36,8 @@ export default function NavbarRoutes() {
 
   if (status === "loading") {
     return (
-      <div className="flex gap-x-2 mx-4 md:mx-10 justify-between w-full">
-        <div className="relative w-64">
+      <div className="flex gap-x-2 mx-4 md:mx-10 justify-end w-full">
+        {/* <div className="relative w-64">
           <input
             type="text"
             placeholder="Cari rapat, pengguna..."
@@ -48,14 +48,14 @@ export default function NavbarRoutes() {
           <span className="absolute left-3 top-2.5 text-gray-500 ">
             <Search size={25} />
           </span>
-        </div>
+        </div> */}
         <div className="flex items-center gap-4">
           {/* Notif */}
           <div className="relative">
-            <button onClick={() => setNotifOpen(!notifOpen)} className="relative text-gray-700 hover:text-blue-600  rounded-md bg-gray-200 py-2 px-3">
+            {/* <button onClick={() => setNotifOpen(!notifOpen)} className="relative text-gray-700 hover:text-blue-600  rounded-md bg-gray-200 py-2 px-3">
               <Bell className="w-6 h-6" />
-              {/* {notifications.some((n) => !n.isRead) && <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full" />} */}
-            </button>
+              {notifications.some((n) => !n.isRead) && <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full" />}
+            </button> */}
 
             {/* {notifOpen && (
             <div className="absolute right-0 mt-3 w-80 bg-white shadow-lg rounded-lg overflow-hidden z-50">
@@ -90,8 +90,8 @@ export default function NavbarRoutes() {
   }
 
   return (
-    <div className="flex gap-x-2 mx-4 md:mx-10 justify-between w-full">
-      <div className="relative w-64">
+    <div className="flex gap-x-2 mx-4 md:mx-10 justify-end w-full">
+      {/* <div className="relative w-64">
         <input
           type="text"
           placeholder="Cari rapat, pengguna..."
@@ -102,14 +102,14 @@ export default function NavbarRoutes() {
         <span className="absolute left-3 top-2.5 text-gray-500 ">
           <Search size={25} />
         </span>
-      </div>
+      </div> */}
       <div className="flex items-center gap-4">
         {/* Notif */}
         <div className="relative">
-          <button onClick={() => setNotifOpen(!notifOpen)} className="relative text-gray-700 hover:text-blue-600  rounded-md bg-gray-200 py-2 px-3">
+          {/* <button onClick={() => setNotifOpen(!notifOpen)} className="relative text-gray-700 hover:text-blue-600  rounded-md bg-gray-200 py-2 px-3">
             <Bell className="w-6 h-6" />
-            {/* {notifications.some((n) => !n.isRead) && <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full" />} */}
-          </button>
+            {notifications.some((n) => !n.isRead) && <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full" />}
+          </button> */}
 
           {/* {notifOpen && (
             <div className="absolute right-0 mt-3 w-80 bg-white shadow-lg rounded-lg overflow-hidden z-50">
@@ -132,7 +132,7 @@ export default function NavbarRoutes() {
         {/* Profile Dropdown */}
         <div className="relative">
           <button onClick={() => setProfileOpen(!profileOpen)} className="flex items-center gap-1 border rounded-md p-1 hover:bg-gray-50">
-            <img src={session.user?.image} alt="profile" className="rounded-full h-8 w-8" referrerPolicy="no-referrer" />
+            <img src={session.user?.image} alt="profile" className="rounded-full h-10 w-10" referrerPolicy="no-referrer" />
             {/* <span className="hidden md:inline text-sm">{session.user?.name || "User"}</span> */}
           </button>
 

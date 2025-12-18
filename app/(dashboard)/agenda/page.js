@@ -99,7 +99,9 @@ export default function CreatePage() {
               window.location.href = "/agenda/create_agenda";
             }
           }}
-          className={`${isDisabled ? "bg-gray-600 text-white px-4 py-2 rounded-lg transition font-bold w-40" : "bg-blue-600 text-white px-4 py-2 rounded-lg  hover:bg-blue-700 transition font-bold w-40"}`}
+          className={`${
+            isDisabled ? "bg-gray-600 text-white px-2 py-1 rounded-lg transition font-bold w-40 text-xs md:text-lg" : "bg-blue-600 text-white px-2 py-1 rounded-lg text-xs md:text-lg hover:bg-blue-700 transition font-bold w-40"
+          }`}
         >
           {isDisabled ? "Akses Ditolak" : " + Buat agenda"}
         </button>
