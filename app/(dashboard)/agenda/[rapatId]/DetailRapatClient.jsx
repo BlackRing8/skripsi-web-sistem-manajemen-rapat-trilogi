@@ -80,24 +80,29 @@ export default function DetailRapat({ rapatId }) {
             <p className="text-end md:text-lg">
               ⏰{" "}
               {new Date(rapat.tanggalMulai).toLocaleString("id-ID", {
+                timeZone: "Asia/Jakarta",
                 weekday: "long",
                 day: "numeric",
                 month: "long",
                 year: "numeric",
               })}
             </p>
+
             <p className="md:text-lg text-end">
               {new Date(rapat.tanggalMulai).toLocaleString("id-ID", {
+                timeZone: "Asia/Jakarta",
                 hour: "2-digit",
                 minute: "2-digit",
               })}{" "}
               -{" "}
               {new Date(rapat.tanggalSelesai).toLocaleString("id-ID", {
+                timeZone: "Asia/Jakarta",
                 hour: "2-digit",
                 minute: "2-digit",
               })}{" "}
               WIB
             </p>
+
             <p className="text-xs text-end">{rapat.lokasi}</p>
           </div>
         </div>
