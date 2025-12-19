@@ -5,8 +5,10 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { google } from "googleapis";
 import { z } from "zod";
 
-function formatToJakarta(date) {
-  return date.toISOString().replace("Z", "");
+function formatForGoogleCalendar(date) {
+  const pad = (n) => String(n).padStart(2, "0");
+
+  return date.getFullYear() + "-" + pad(date.getMonth() + 1) + "-" + pad(date.getDate()) + "T" + pad(date.getHours()) + ":" + pad(date.getMinutes()) + ":00";
 }
 
 // Validasi Schema
@@ -158,13 +160,14 @@ export async function POST(req) {
         summary: agenda.judul,
         description: agenda.deskripsi ?? "",
         start: {
-          dateTime: agenda.tanggalMulai.toISOString(),
-          // timeZone: "Asia/Jakarta", // untuk development
+          dateTime: formatForGoogleCalendar(agenda.tanggalMulai),
+          timeZone: "Asia/Jakarta",
         },
         end: {
-          dateTime: agenda.tanggalSelesai.toISOString(),
-          // timeZone: "Asia/Jakarta", // untuk development
+          dateTime: formatForGoogleCalendar(agenda.tanggalSelesai),
+          timeZone: "Asia/Jakarta",
         },
+
         location: agenda.lokasi,
         attendees: pesertaEmails.map((email) => ({ email })),
       };
