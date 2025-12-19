@@ -5,6 +5,10 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { google } from "googleapis";
 import { z } from "zod";
 
+function formatToJakarta(date) {
+  return date.toISOString().replace("Z", "");
+}
+
 // Validasi Schema
 
 const agendaSchema = z.object({

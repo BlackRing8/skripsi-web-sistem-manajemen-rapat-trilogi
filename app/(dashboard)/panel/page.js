@@ -75,7 +75,7 @@ export default function DashboardLayout() {
             <br></br> Apa rencana mu hari ini?
           </h1>
         </div>
-        <div className="w-full flex flex-col bg-white rounded-4xl p-8 space-y-4 md:h-96 overflow-y-auto">
+        <div className="w-full flex flex-col bg-white rounded-4xl p-8 space-y-4 md:h-125 overflow-y-auto">
           <h2 className="font-bold text-2xl">Agenda hari ini:</h2>
           {events.length > 0 ? <CardEvent /> : <p className="text-gray-400">Tidak ada agenda hari ini.</p>}
         </div>
