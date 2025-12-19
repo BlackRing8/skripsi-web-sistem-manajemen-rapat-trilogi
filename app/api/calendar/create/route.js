@@ -159,11 +159,11 @@ export async function POST(req) {
         description: agenda.deskripsi ?? "",
         start: {
           dateTime: agenda.tanggalMulai.toISOString(),
-          timeZone: "Asia/Jakarta",
+          // timeZone: "Asia/Jakarta", // untuk development
         },
         end: {
           dateTime: agenda.tanggalSelesai.toISOString(),
-          timeZone: "Asia/Jakarta",
+          // timeZone: "Asia/Jakarta", // untuk development
         },
         location: agenda.lokasi,
         attendees: pesertaEmails.map((email) => ({ email })),

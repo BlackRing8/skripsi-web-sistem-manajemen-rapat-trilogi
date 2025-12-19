@@ -49,7 +49,7 @@ export default function DashboardLayout() {
     const fetchDayEvents = async () => {
       try {
         setLoading(true);
-        const dateStr = selectedDate.toLocaleDateString("en-CA", { timeZone: "Asia/Jakarta" });
+        const dateStr = selectedDate.toLocaleDateString("en-CA"); // gunakan , { timeZone: "Asia/Jakarta" } untuk lokal development
         const res = await fetch(`/api/calendar/get_spesifik?date=${dateStr}`);
         if (!res.ok) throw new Error("Gagal mengambil event tanggal ini");
         const data = await res.json();
