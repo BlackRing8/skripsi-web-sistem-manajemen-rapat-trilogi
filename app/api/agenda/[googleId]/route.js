@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../../auth/[...nextauth]/route";
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import zonedTimeToUtc from "date-fns-tz/zonedTimeToUtc";
 
 // 🔹 PATCH — Edit agenda
 export async function PATCH(req, context) {
@@ -30,10 +31,18 @@ export async function PATCH(req, context) {
         summary,
         description,
         location,
-        start,
-        end,
+        start: {
+          dateTime: new Date(start.dateTime).toISOString(),
+        },
+        end: {
+          dateTime: new Date(end.dateTime).toISOString(),
+        },
       },
     });
+
+    // 🔹 Konversi WIB → UTC untuk DB
+    const startUTC = zonedTimeToUtc(start.dateTime, "Asia/Jakarta");
+    const endUTC = zonedTimeToUtc(end.dateTime, "Asia/Jakarta");
 
     // Update di database lokal
     const updatedAgenda = await prisma.rapat.update({
@@ -42,8 +51,8 @@ export async function PATCH(req, context) {
         judul: summary,
         deskripsi: description,
         lokasi: location,
-        tanggalMulai: new Date(start.dateTime),
-        tanggalSelesai: new Date(end.dateTime),
+        tanggalMulai: startUTC,
+        tanggalSelesai: endUTC,
       },
     });
 
@@ -62,7 +71,7 @@ export async function DELETE(req, context) {
   const params = await context.params;
   const { googleId } = params;
 
-  const accessToken = session?.user?.accessToken;
+  const accessToken = session?.accessToken;
 
   const auth = new google.auth.OAuth2();
   auth.setCredentials({ access_token: accessToken });
