@@ -4,6 +4,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { google } from "googleapis";
 import { z } from "zod";
+import zonedTimeToUtc from "date-fns-tz/zonedTimeToUtc";
 
 function formatForGoogleCalendar(date) {
   const pad = (n) => String(n).padStart(2, "0");
@@ -117,13 +118,17 @@ export async function POST(req) {
     const data = agendaSchema.parse(body);
     const pesertaEmails = body.peserta || [];
 
+    const tanggalMulaiUTC = zonedTimeToUtc(data.tanggalMulai, "Asia/Jakarta");
+
+    const tanggalSelesaiUTC = zonedTimeToUtc(data.tanggalSelesai, "Asia/Jakarta");
+
     // Buat rapat lokal
     const agenda = await prisma.rapat.create({
       data: {
         judul: data.judul,
         deskripsi: data.deskripsi,
-        tanggalMulai: new Date(data.tanggalMulai),
-        tanggalSelesai: new Date(data.tanggalSelesai),
+        tanggalMulai: tanggalMulaiUTC,
+        tanggalSelesai: tanggalSelesaiUTC,
         lokasi: data.lokasi,
         linkMeeting: data.linkMeeting,
         pembuatId: user.id,
