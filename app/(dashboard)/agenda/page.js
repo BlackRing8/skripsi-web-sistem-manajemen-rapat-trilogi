@@ -134,15 +134,7 @@ export default function CreatePage() {
                       </h2>
                       <p className="text-gray-600 mt-1">{tanggal}</p>
                       <p className="font-bold text-md text-gray-600 mt-1">
-                        {new Date(event.start?.dateTime || event.start?.date).toLocaleTimeString("id-ID", {
-                          hour: "2-digit",
-                          minute: "2-digit",
-                        })}{" "}
-                        -{" "}
-                        {new Date(event.end?.dateTime || event.end?.date).toLocaleTimeString("id-ID", {
-                          hour: "2-digit",
-                          minute: "2-digit",
-                        })}
+                        {waktuMulai} - {waktuSelesai}
                       </p>
                       {event.description || (event.deskripsi && <p className="text-gray-700 text-sm mt-2 mb-0 ">{event.description || event.deskripsi}</p>)}
                       <p className="mb-4">

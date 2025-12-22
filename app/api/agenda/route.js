@@ -54,7 +54,7 @@ export async function GET() {
     });
 
     // sedang di ubah menjadi data yg ada di database dlu sementara
-    // console.log(localAgendas);
+    console.log(localAgendas);
     return NextResponse.json(JSON.parse(JSON.stringify(localAgendas)));
   } catch (error) {
     console.error("Error mengambil event:", error);
