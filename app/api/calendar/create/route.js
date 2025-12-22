@@ -6,11 +6,11 @@ import { google } from "googleapis";
 import { z } from "zod";
 import zonedTimeToUtc from "date-fns-tz/zonedTimeToUtc";
 
-function formatForGoogleCalendar(date) {
-  const pad = (n) => String(n).padStart(2, "0");
+// function formatForGoogleCalendar(date) {
+//   const pad = (n) => String(n).padStart(2, "0");
 
-  return date.getFullYear() + "-" + pad(date.getMonth() + 1) + "-" + pad(date.getDate()) + "T" + pad(date.getHours()) + ":" + pad(date.getMinutes()) + ":00";
-}
+//   return date.getFullYear() + "-" + pad(date.getMonth() + 1) + "-" + pad(date.getDate()) + "T" + pad(date.getHours()) + ":" + pad(date.getMinutes()) + ":00";
+// }
 
 // Validasi Schema
 
@@ -165,12 +165,10 @@ export async function POST(req) {
         summary: agenda.judul,
         description: agenda.deskripsi ?? "",
         start: {
-          dateTime: formatForGoogleCalendar(agenda.tanggalMulai),
-          timeZone: "Asia/Jakarta",
+          dateTime: agenda.tanggalMulai.toISOString(),
         },
         end: {
-          dateTime: formatForGoogleCalendar(agenda.tanggalSelesai),
-          timeZone: "Asia/Jakarta",
+          dateTime: agenda.tanggalSelesai.toISOString(),
         },
 
         location: agenda.lokasi,
