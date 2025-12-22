@@ -120,8 +120,14 @@ export default function CreatePage() {
               const end = event.end?.dateTime || event.end?.date || event.tanggalSelesai;
 
               const tanggal = safeFormat(start, "dd MMM yyyy");
-              const waktuMulai = safeFormat(start, "HH:mm");
-              const waktuSelesai = safeFormat(end, "HH:mm");
+              const waktuMulai = new Date(eventData.start?.dateTime || eventData.start?.date).toLocaleTimeString("id-ID", {
+                hour: "2-digit",
+                minute: "2-digit",
+              });
+              const waktuSelesai = new Date(eventData.end?.dateTime || eventData.end?.date).toLocaleTimeString("id-ID", {
+                hour: "2-digit",
+                minute: "2-digit",
+              });
 
               return (
                 <div key={key} className="p-5 border border-gray-200 rounded-xl shadow-sm hover:shadow-md bg-white transition">
