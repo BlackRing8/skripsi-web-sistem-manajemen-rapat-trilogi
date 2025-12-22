@@ -116,12 +116,26 @@ export default function CreatePage() {
           <div className="space-y-4">
             {events.map((event, index) => {
               const key = event.id || `${event.summary}-${index}`;
-              const start = event.start?.dateTime || event.start?.date || event.tanggalMulai;
-              const end = event.end?.dateTime || event.end?.date || event.tanggalSelesai;
+              let start = event.start?.dateTime || event.start?.date || event.tanggalMulai;
+              let end = event.end?.dateTime || event.end?.date || event.tanggalSelesai;
 
               const tanggal = safeFormat(start, "dd MMM yyyy");
-              const waktuMulai = safeFormat(start, "HH:mm");
-              const waktuSelesai = safeFormat(end, "HH:mm");
+              // const waktuMulai = safeFormat(start, "HH:mm");
+              // const waktuSelesai = safeFormat(end, "HH:mm");
+
+              const waktuMulai = new Date(start).toLocaleTimeString("id-ID", {
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: false,
+                timeZone: "Asia/Jakarta",
+              });
+
+              const waktuSelesai = new Date(end).toLocaleTimeString("id-ID", {
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: false,
+                timeZone: "Asia/Jakarta",
+              });
 
               return (
                 <div key={key} className="p-5 border border-gray-200 rounded-xl shadow-sm hover:shadow-md bg-white transition">
