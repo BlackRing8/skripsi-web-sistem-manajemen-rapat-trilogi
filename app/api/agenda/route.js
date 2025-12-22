@@ -30,6 +30,7 @@ export async function GET() {
       calendarId: "primary",
       showDeleted: false,
       singleEvents: true,
+      timeZone: "Asia/Jakarta", // update untuk production
       orderBy: "startTime",
     });
 

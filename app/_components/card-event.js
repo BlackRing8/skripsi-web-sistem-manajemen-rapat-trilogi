@@ -39,7 +39,7 @@ export default function CardEvent() {
               <h3>
                 id Rapat: <b>{event.id}</b>
               </h3>
-              <p>⏰ {event.start?.dateTime ? new Date(event.start.dateTime).toLocaleTimeString("id-ID") : "Tidak ada waktu"}</p>
+              <p>⏰ {new Date(event.start.dateTime).toLocaleTimeString("id-ID") || "Tidak ada waktu"}</p>
               {event.location && <p>📍 {event.location}</p>}
               {event.location && event.location == "google meet" && (
                 <p>
