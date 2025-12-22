@@ -120,14 +120,8 @@ export default function CreatePage() {
               const end = event.end?.dateTime || event.end?.date || event.tanggalSelesai;
 
               const tanggal = safeFormat(start, "dd MMM yyyy");
-              const waktuMulai = new Date(eventData.start?.dateTime || eventData.start?.date).toLocaleTimeString("id-ID", {
-                hour: "2-digit",
-                minute: "2-digit",
-              });
-              const waktuSelesai = new Date(eventData.end?.dateTime || eventData.end?.date).toLocaleTimeString("id-ID", {
-                hour: "2-digit",
-                minute: "2-digit",
-              });
+              const waktuMulai = safeFormat(start, "HH:mm");
+              const waktuSelesai = safeFormat(end, "HH:mm");
 
               return (
                 <div key={key} className="p-5 border border-gray-200 rounded-xl shadow-sm hover:shadow-md bg-white transition">
@@ -140,7 +134,15 @@ export default function CreatePage() {
                       </h2>
                       <p className="text-gray-600 mt-1">{tanggal}</p>
                       <p className="font-bold text-md text-gray-600 mt-1">
-                        {waktuMulai} - {waktuSelesai}
+                        {new Date(event.start?.dateTime || event.start?.date).toLocaleTimeString("id-ID", {
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })}{" "}
+                        -{" "}
+                        {new Date(event.end?.dateTime || event.end?.date).toLocaleTimeString("id-ID", {
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })}
                       </p>
                       {event.description || (event.deskripsi && <p className="text-gray-700 text-sm mt-2 mb-0 ">{event.description || event.deskripsi}</p>)}
                       <p className="mb-4">
